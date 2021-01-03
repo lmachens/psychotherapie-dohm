@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #428bca;
+}
+
 html,
 body {
   padding: 0;
@@ -7,10 +15,50 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.divider {
+  background: #ddd;
+  height: 1px;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.box-shadow {
+  box-shadow: 1px 2px 3px rgba(119, 119, 119, 0.25);
+}
+
+h2,
+h3 {
+  text-align: center;
+  margin: 0;
+}
+
+.main {
+  padding: 15px 0;
+}
+
+.teaser {
+  text-align: center;
+}
+
+.warn {
+  color: red;
+}
+
+.media {
+  display: block;
+  margin: 0 auto;
 }
