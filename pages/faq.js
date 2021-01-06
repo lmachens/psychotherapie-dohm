@@ -1,16 +1,13 @@
-import Head from "next/head";
 import React from "react";
 import AppFooter from "../components/AppFooter";
+import AppHead from "../components/AppHead";
 import { getFaq, getFooter } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
 function Faq({ title, coverUrl, content, footer }) {
   return (
     <>
-      <Head>
-        <title>Psychotherapie Dohm</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <AppHead title="Psychotherapie Dohm" />
       <main className="main box-shadow">
         <section className="container">
           <h2>{title}</h2>

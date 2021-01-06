@@ -62,3 +62,11 @@ h3 {
   display: block;
   margin: 0 auto;
 }
+
+.partner-image {
+  max-height: 90px;
+}
+
+.partner-image + .partner-image {
+  margin-left: 4px;
+}

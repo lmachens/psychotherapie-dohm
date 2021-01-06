@@ -1,16 +1,13 @@
-import Head from "next/head";
 import React from "react";
 import AppFooter from "../components/AppFooter";
+import AppHead from "../components/AppHead";
 import { getFooter, getLegal } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
 function Legal({ title, content, footer }) {
   return (
     <>
-      <Head>
-        <title>Psychotherapie Dohm</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <AppHead title="Psychotherapie Dohm" />
       <main className="main box-shadow">
         <section className="container">
           <h2>{title}</h2>

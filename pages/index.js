@@ -1,15 +1,12 @@
-import Head from "next/head";
 import { getHome, getFooter } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 import AppFooter from "../components/AppFooter";
+import AppHead from "../components/AppHead";
 
 export default function Home({ title, teaser, coverUrl, content, footer }) {
   return (
     <>
-      <Head>
-        <title>Psychotherapie Dohm</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <AppHead title="Psychotherapie Dohm" />
       <main className="main box-shadow">
         <section className="container">
           <h2>{title}</h2>
