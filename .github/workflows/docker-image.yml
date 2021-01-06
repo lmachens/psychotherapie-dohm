@@ -27,6 +27,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build image
+        env:
+          STRAPI_API_URL: ${{ secrets.STRAPI_API_URL }}
+
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
       - name: Log into registry
