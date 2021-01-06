@@ -1,0 +1,25 @@
+// Variable overrides
+
+// Bootstrap and its default variables
+@import "~bootstrap/scss/bootstrap";
+
+// Custom styles
+.img-cover {
+  min-width: 230px;
+}
+
+.warn {
+  color: red;
+}
+
+iframe {
+  display: block;
+}
+
+.partner-image {
+  max-height: 90px;
+}
+
+.partner-image + .partner-image {
+  margin-left: 4px;
+}

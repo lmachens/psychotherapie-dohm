@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "../styles/AppHeader.module.css";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import NavLink from "./NavLink";
+import { useRouter } from "next/router";
+import classNames from "classnames";
 
 const links = [
   {
@@ -22,27 +22,60 @@ const links = [
   },
 ];
 function AppHeader() {
-  return (
-    <header className={`${styles.header} box-shadow`}>
-      <div className="container">
-        <Link href="/">
-          <a>
-            <h1 className={styles.title}>Psychotherapie Dohm</h1>
-          </a>
-        </Link>
+  const { asPath, prefetch } = useRouter();
+  const collapse = useRef();
 
-        <nav className={styles.links}>
-          {links.map((link) => (
-            <NavLink
-              key={link.label}
-              href={link.href}
-              activeClassName={styles.active}
-            >
-              <a>{link.label}</a>
-            </NavLink>
-          ))}
-        </nav>
-      </div>
+  useEffect(() => {
+    // Bootstrap needs to be loaded dynamically to avoid SSR `document is not defined` issue
+    import("bootstrap").then(({ Collapse }) => {
+      // https://getbootstrap.com/docs/5.0/components/collapse/#via-javascript
+      new Collapse(collapse.current);
+    });
+  }, []);
+
+  return (
+    <header className="sticky-top">
+      <nav className="navbar navbar-expand-md navbar-light bg-light">
+        <div className="container-fluid">
+          <Link href="/">
+            <a className="navbar-brand">Psychotherapie Dohm</a>
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarLinks"
+            aria-controls="navbarLinks"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse"
+            id="navbarLinks"
+            ref={collapse}
+          >
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              {links.map((link) => (
+                <li className="nav-item" key={link.label}>
+                  <Link href={link.href}>
+                    <a
+                      className={classNames("nav-link", {
+                        active: asPath === link.href,
+                      })}
+                      aria-current="page"
+                      onMouseEnter={() => prefetch(link.href)}
+                    >
+                      {link.label}
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
   );
 }
