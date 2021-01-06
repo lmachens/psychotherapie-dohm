@@ -4,22 +4,27 @@ import AppHead from "../components/AppHead";
 import { getAbout, getFooter } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
-function About({ title, teaser, coverUrl, content, footer }) {
+function About({ title, teaser, coverUrl, avatarUrl, content, footer }) {
   return (
     <>
-      <AppHead title="Psychotherapie Dohm" />
-      <main className="main box-shadow">
-        <section className="container">
-          <h2>{title}</h2>
-          <div
-            className="teaser"
-            dangerouslySetInnerHTML={{ __html: teaser }}
-          />
-          <img src={coverUrl} alt="" />
+      <AppHead title="Psychotherapie Dohm - Zur Person" />
+      <main>
+        <section className="row g-0 align-items-center bg-dark text-light">
+          <div className="col text-center p-5">
+            <h2>{title}</h2>
+            <div dangerouslySetInnerHTML={{ __html: teaser }} />
+          </div>
+          <div className="col">
+            <img className="img-fluid img-cover" src={coverUrl} alt="Praxis" />
+          </div>
         </section>
-        <div className="divider" />
+        <img
+          className="img-thumbnail float-end m-5"
+          src={avatarUrl}
+          alt="Lea Dohm"
+        />
         <section
-          className="container"
+          className="p-5"
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </main>
@@ -38,8 +43,9 @@ export async function getStaticProps() {
     props: {
       title: about.title,
       coverUrl: `${process.env.STRAPI_API_URL}${about.cover.url}`,
-      teaser: await markdownToHtml(about?.teaser || ""),
-      content: await markdownToHtml(about?.content || ""),
+      teaser: await markdownToHtml(about.teaser || ""),
+      content: await markdownToHtml(about.content || ""),
+      avatarUrl: `${process.env.STRAPI_API_URL}${about.avatar.url}`,
       footer: {
         title: footer.title,
         content: await markdownToHtml(footer?.content || ""),

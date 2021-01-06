@@ -7,23 +7,26 @@ import markdownToHtml from "../lib/markdownToHtml";
 function Publications({ title, partnerUrls, coverUrl, content, footer }) {
   return (
     <>
-      <AppHead title="Psychotherapie Dohm" />
-      <main className="main box-shadow">
-        <section className="container">
-          <h2>{title}</h2>
-          {partnerUrls.map((partnerUrl) => (
-            <img
-              key={partnerUrl}
-              src={partnerUrl}
-              alt=""
-              className="partner-image"
-            />
-          ))}
-          <img src={coverUrl} alt="" />
+      <AppHead title="Psychotherapie Dohm - Publikationen" />
+      <main>
+        <section className="row g-0 align-items-center bg-dark text-light">
+          <div className="col text-center p-5">
+            <h2>{title}</h2>
+            {partnerUrls.map((partnerUrl) => (
+              <img
+                key={partnerUrl}
+                src={partnerUrl}
+                alt=""
+                className="partner-image"
+              />
+            ))}
+          </div>
+          <div className="col">
+            <img className="img-fluid img-cover" src={coverUrl} alt="Praxis" />
+          </div>
         </section>
-        <div className="divider" />
         <section
-          className="container"
+          className="p-5"
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </main>
