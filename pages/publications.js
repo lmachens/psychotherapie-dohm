@@ -2,6 +2,7 @@ import React from "react";
 import AppFooter from "../components/AppFooter";
 import AppHead from "../components/AppHead";
 import RatioImg from "../components/RatioImg";
+import Teaser from "../components/Teaser";
 import { getFooter, getPublications } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
@@ -11,16 +12,19 @@ function Publications({ title, partnerUrls, coverUrl, content, footer }) {
       <AppHead title="Psychotherapie Dohm - Publikationen" />
       <main>
         <section className="row g-0 align-items-center bg-dark text-light">
-          <div className="col text-center p-5">
-            <h2>{title}</h2>
-            {partnerUrls.map((partnerUrl) => (
-              <img
-                key={partnerUrl}
-                src={partnerUrl}
-                alt=""
-                className="partner-image"
-              />
-            ))}
+          <div className="col">
+            <Teaser title={title}>
+              <div>
+                {partnerUrls.map((partnerUrl) => (
+                  <img
+                    key={partnerUrl}
+                    src={partnerUrl}
+                    alt=""
+                    className="partner-image"
+                  />
+                ))}
+              </div>
+            </Teaser>
           </div>
           <div className="col">
             <RatioImg src={coverUrl} alt="Praxis" />

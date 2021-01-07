@@ -3,16 +3,18 @@ import markdownToHtml from "../lib/markdownToHtml";
 import AppFooter from "../components/AppFooter";
 import AppHead from "../components/AppHead";
 import RatioImg from "../components/RatioImg";
+import Teaser from "../components/Teaser";
 
 export default function Home({ title, teaser, coverUrl, content, footer }) {
   return (
     <>
       <AppHead title="Psychotherapie Dohm" />
       <main>
-        <section className="row g-0 align-items-center">
-          <div className="col text-center p-5">
-            <h2>{title}</h2>
-            <div dangerouslySetInnerHTML={{ __html: teaser }} />
+        <section className="row g-0 align-items-stretch">
+          <div className="col">
+            <Teaser title={title}>
+              <div dangerouslySetInnerHTML={{ __html: teaser }} />
+            </Teaser>
           </div>
           <div className="col">
             <RatioImg src={coverUrl} alt="Praxis" />

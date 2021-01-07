@@ -5,7 +5,7 @@
 
 // Custom styles
 .ratio-img {
-  height: 0;
+  height: 100%;
   min-width: 230px;
   padding-top: 62%;
   position: relative;
@@ -16,6 +16,9 @@
   position: absolute;
   top: 0;
   left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .warn {
