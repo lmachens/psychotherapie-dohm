@@ -22,7 +22,7 @@ function About({ title, teaser, coverUrl, avatarUrl, content, footer }) {
           </div>
         </section>
         <img
-          className="img-thumbnail float-end m-5"
+          className="avatar img-thumbnail float-sm-end m-5"
           src={avatarUrl}
           alt="Lea Dohm"
         />

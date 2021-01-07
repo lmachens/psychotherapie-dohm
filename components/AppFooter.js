@@ -9,10 +9,14 @@ function AppFooter({ content, title }) {
         <div dangerouslySetInnerHTML={{ __html: content }} />
         <nav className="navbar justify-content-center">
           <Link href="/privacy">
-            <a className="nav-link">Datenschutz</a>
+            <a className="nav-link link-light text-decoration-underline">
+              Datenschutz
+            </a>
           </Link>
           <Link href="/legal">
-            <a className="nav-link">Impressum</a>
+            <a className="nav-link link-light text-decoration-underline">
+              Impressum
+            </a>
           </Link>
         </nav>
       </div>
