@@ -6,7 +6,7 @@ import Teaser from "../components/Teaser";
 import { getFooter, getPublications } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
-function Publications({ title, partnerUrls, coverUrl, content, footer }) {
+function Publications({ title, partners, baseUrl, cover, content, footer }) {
   return (
     <>
       <AppHead title="Psychotherapie Dohm - Publikationen" />
@@ -15,11 +15,11 @@ function Publications({ title, partnerUrls, coverUrl, content, footer }) {
           <div className="col">
             <Teaser title={title}>
               <div>
-                {partnerUrls.map((partnerUrl) => (
+                {partners.map((partner) => (
                   <img
-                    key={partnerUrl}
-                    src={partnerUrl}
-                    alt=""
+                    key={partner.id}
+                    src={`${baseUrl}${partner.url}`}
+                    alt={partner.alternativeText}
                     className="partner-image"
                   />
                 ))}
@@ -27,7 +27,12 @@ function Publications({ title, partnerUrls, coverUrl, content, footer }) {
             </Teaser>
           </div>
           <div className="col">
-            <RatioImg src={coverUrl} alt="Praxis" />
+            <RatioImg
+              smallSrc={`${baseUrl}${cover.formats.small.url}`}
+              mediumSrc={`${baseUrl}${cover.formats.medium.url}`}
+              largeSrc={`${baseUrl}${cover.url}`}
+              alt={cover.alternativeText}
+            />
           </div>
         </section>
         <section
@@ -50,11 +55,10 @@ export async function getStaticProps() {
 
   return {
     props: {
+      baseUrl: process.env.STRAPI_API_URL,
       title: publications.title,
-      partnerUrls: publications.partners.map(
-        (partner) => `${process.env.STRAPI_API_URL}${partner.url}`
-      ),
-      coverUrl: `${process.env.STRAPI_API_URL}${publications.cover.url}`,
+      cover: publications.cover,
+      partners: publications.partners,
       content: await markdownToHtml(publications?.content || ""),
       footer: {
         title: footer.title,

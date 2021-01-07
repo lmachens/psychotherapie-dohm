@@ -6,7 +6,7 @@ import Teaser from "../components/Teaser";
 import { getFaq, getFooter } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
-function Faq({ title, coverUrl, content, footer, teaser }) {
+function Faq({ title, baseUrl, cover, content, footer, teaser }) {
   return (
     <>
       <AppHead title="Psychotherapie Dohm - FAQ" />
@@ -18,7 +18,12 @@ function Faq({ title, coverUrl, content, footer, teaser }) {
             </Teaser>
           </div>
           <div className="col">
-            <RatioImg src={coverUrl} alt="Praxis" />
+            <RatioImg
+              smallSrc={`${baseUrl}${cover.formats.small.url}`}
+              mediumSrc={`${baseUrl}${cover.formats.medium.url}`}
+              largeSrc={`${baseUrl}${cover.url}`}
+              alt={cover.alternativeText}
+            />
           </div>
         </section>
         <section
@@ -38,9 +43,10 @@ export async function getStaticProps() {
 
   return {
     props: {
+      baseUrl: process.env.STRAPI_API_URL,
       title: faq.title,
+      cover: faq.cover,
       teaser: await markdownToHtml(faq.teaser || ""),
-      coverUrl: `${process.env.STRAPI_API_URL}${faq.cover.url}`,
       content: await markdownToHtml(faq.content || ""),
       footer: {
         title: footer.title,
