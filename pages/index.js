@@ -56,8 +56,8 @@ export default function Home({ title, teaser, coverUrl, content, footer }) {
 }
 
 export async function getStaticProps() {
-  const home = (await getHome()) || {};
-  const footer = (await getFooter()) || {};
+  const [home, footer] = await Promise.all([getHome(), getFooter()]);
+
   return {
     props: {
       title: home.title,

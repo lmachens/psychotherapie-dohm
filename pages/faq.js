@@ -34,8 +34,7 @@ function Faq({ title, coverUrl, content, footer, teaser }) {
 export default Faq;
 
 export async function getStaticProps() {
-  const faq = (await getFaq()) || {};
-  const footer = (await getFooter()) || {};
+  const [faq, footer] = await Promise.all([getFaq(), getFooter()]);
 
   return {
     props: {

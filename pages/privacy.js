@@ -22,8 +22,7 @@ function Privacy({ title, content, footer }) {
 export default Privacy;
 
 export async function getStaticProps() {
-  const privacy = (await getPrivacy()) || {};
-  const footer = (await getFooter()) || {};
+  const [privacy, footer] = await Promise.all([getPrivacy(), getFooter()]);
 
   return {
     props: {
