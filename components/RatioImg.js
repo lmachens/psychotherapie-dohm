@@ -6,7 +6,7 @@ function RatioImg({ smallSrc, mediumSrc, largeSrc, alt }) {
       <picture>
         {largeSrc && <source srcSet={largeSrc} media="(min-width: 992px)" />}
         {mediumSrc && <source srcSet={mediumSrc} media="(min-width: 768px)" />}
-        <img src={smallSrc} alt={alt} />
+        <img src={smallSrc} alt={alt} width="100%" height="100%" />
       </picture>
     </div>
   );
