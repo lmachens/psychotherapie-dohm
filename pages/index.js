@@ -67,7 +67,7 @@ export default function Home({
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [home, footer] = await Promise.all([getHome(), getFooter()]);
 
   return {

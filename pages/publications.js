@@ -47,7 +47,7 @@ function Publications({ title, partners, baseUrl, cover, content, footer }) {
 
 export default Publications;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [publications, footer] = await Promise.all([
     getPublications(),
     getFooter(),

@@ -21,7 +21,7 @@ function Privacy({ title, content, footer }) {
 
 export default Privacy;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [privacy, footer] = await Promise.all([getPrivacy(), getFooter()]);
 
   return {

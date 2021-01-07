@@ -43,7 +43,7 @@ function About({ title, teaser, baseUrl, cover, avatar, content, footer }) {
 
 export default About;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [about, footer] = await Promise.all([getAbout(), getFooter()]);
 
   return {

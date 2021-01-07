@@ -21,7 +21,7 @@ function Legal({ title, content, footer }) {
 
 export default Legal;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [legal, footer] = await Promise.all([getLegal(), getFooter()]);
 
   return {
