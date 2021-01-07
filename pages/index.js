@@ -2,6 +2,7 @@ import { getHome, getFooter } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 import AppFooter from "../components/AppFooter";
 import AppHead from "../components/AppHead";
+import RatioImg from "../components/RatioImg";
 
 export default function Home({ title, teaser, coverUrl, content, footer }) {
   return (
@@ -14,7 +15,7 @@ export default function Home({ title, teaser, coverUrl, content, footer }) {
             <div dangerouslySetInnerHTML={{ __html: teaser }} />
           </div>
           <div className="col">
-            <img className="img-fluid img-cover" src={coverUrl} alt="Praxis" />
+            <RatioImg src={coverUrl} alt="Praxis" />
           </div>
         </section>
         <section

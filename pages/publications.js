@@ -1,6 +1,7 @@
 import React from "react";
 import AppFooter from "../components/AppFooter";
 import AppHead from "../components/AppHead";
+import RatioImg from "../components/RatioImg";
 import { getFooter, getPublications } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
@@ -22,7 +23,7 @@ function Publications({ title, partnerUrls, coverUrl, content, footer }) {
             ))}
           </div>
           <div className="col">
-            <img className="img-fluid img-cover" src={coverUrl} alt="Praxis" />
+            <RatioImg src={coverUrl} alt="Praxis" />
           </div>
         </section>
         <section

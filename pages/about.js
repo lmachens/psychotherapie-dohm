@@ -1,6 +1,7 @@
 import React from "react";
 import AppFooter from "../components/AppFooter";
 import AppHead from "../components/AppHead";
+import RatioImg from "../components/RatioImg";
 import { getAbout, getFooter } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
@@ -15,7 +16,7 @@ function About({ title, teaser, coverUrl, avatarUrl, content, footer }) {
             <div dangerouslySetInnerHTML={{ __html: teaser }} />
           </div>
           <div className="col">
-            <img className="img-fluid img-cover" src={coverUrl} alt="Praxis" />
+            <RatioImg src={coverUrl} alt="Praxis" />
           </div>
         </section>
         <img
