@@ -27,6 +27,7 @@
 
 iframe {
   display: block;
+  margin: 0 auto;
 }
 
 .partner-image {
@@ -35,4 +36,35 @@ iframe {
 
 .partner-image + .partner-image {
   margin-left: 4px;
+}
+
+.preview {
+  text-align: center;
+  position: relative;
+}
+
+.preview img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.preview p {
+  margin: 0;
+}
+
+.preview div {
+  position: absolute;
+  min-height: 130px;
+  width: 300px;
+  top: calc(50% - 65px);
+  left: calc(50% - 150px);
+  background: #fff;
+  padding: 8px;
+  display: grid;
+  place-items: center;
+  row-gap: 4px;
+}
+
+.preview a {
+  font-size: 0.75em;
 }
