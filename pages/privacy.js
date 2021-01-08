@@ -1,10 +1,10 @@
 import React from "react";
 import AppFooter from "../components/AppFooter";
 import AppHead from "../components/AppHead";
-import { getFooter, getPrivacy } from "../lib/api";
+import { getPrivacy } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
-function Privacy({ title, content, footer }) {
+function Privacy({ title, content }) {
   return (
     <>
       <AppHead title="Psychotherapie Dohm - Datenschutz" />
@@ -14,7 +14,6 @@ function Privacy({ title, content, footer }) {
           <div dangerouslySetInnerHTML={{ __html: content }} />
         </section>
       </main>
-      <AppFooter {...footer} />
     </>
   );
 }
@@ -22,16 +21,12 @@ function Privacy({ title, content, footer }) {
 export default Privacy;
 
 export async function getServerSideProps() {
-  const [privacy, footer] = await Promise.all([getPrivacy(), getFooter()]);
+  const privacy = await getPrivacy();
 
   return {
     props: {
       title: privacy.title,
       content: await markdownToHtml(privacy?.content || ""),
-      footer: {
-        title: footer.title,
-        content: await markdownToHtml(footer?.content || ""),
-      },
     },
   };
 }

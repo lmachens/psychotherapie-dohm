@@ -3,10 +3,10 @@ import AppFooter from "../components/AppFooter";
 import AppHead from "../components/AppHead";
 import RatioImg from "../components/RatioImg";
 import Teaser from "../components/Teaser";
-import { getFooter, getPublications } from "../lib/api";
+import { getPublications } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
-function Publications({ title, partners, baseUrl, cover, content, footer }) {
+function Publications({ title, partners, baseUrl, cover, content }) {
   return (
     <>
       <AppHead title="Psychotherapie Dohm - Publikationen" />
@@ -40,7 +40,6 @@ function Publications({ title, partners, baseUrl, cover, content, footer }) {
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </main>
-      <AppFooter {...footer} />
     </>
   );
 }
@@ -48,10 +47,7 @@ function Publications({ title, partners, baseUrl, cover, content, footer }) {
 export default Publications;
 
 export async function getServerSideProps() {
-  const [publications, footer] = await Promise.all([
-    getPublications(),
-    getFooter(),
-  ]);
+  const publications = await getPublications();
 
   return {
     props: {
@@ -60,10 +56,6 @@ export async function getServerSideProps() {
       cover: publications.cover,
       partners: publications.partners,
       content: await markdownToHtml(publications?.content || ""),
-      footer: {
-        title: footer.title,
-        content: await markdownToHtml(footer?.content || ""),
-      },
     },
   };
 }

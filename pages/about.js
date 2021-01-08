@@ -1,12 +1,11 @@
 import React from "react";
-import AppFooter from "../components/AppFooter";
 import AppHead from "../components/AppHead";
 import RatioImg from "../components/RatioImg";
 import Teaser from "../components/Teaser";
-import { getAbout, getFooter } from "../lib/api";
+import { getAbout } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
-function About({ title, teaser, baseUrl, cover, avatar, content, footer }) {
+function About({ title, teaser, baseUrl, cover, avatar, content }) {
   return (
     <>
       <AppHead title="Psychotherapie Dohm - Zur Person" />
@@ -36,7 +35,6 @@ function About({ title, teaser, baseUrl, cover, avatar, content, footer }) {
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </main>
-      <AppFooter {...footer} />
     </>
   );
 }
@@ -44,7 +42,7 @@ function About({ title, teaser, baseUrl, cover, avatar, content, footer }) {
 export default About;
 
 export async function getServerSideProps() {
-  const [about, footer] = await Promise.all([getAbout(), getFooter()]);
+  const about = await getAbout();
 
   return {
     props: {
@@ -54,10 +52,6 @@ export async function getServerSideProps() {
       teaser: await markdownToHtml(about.teaser || ""),
       content: await markdownToHtml(about.content || ""),
       avatar: about.avatar,
-      footer: {
-        title: footer.title,
-        content: await markdownToHtml(footer?.content || ""),
-      },
     },
   };
 }

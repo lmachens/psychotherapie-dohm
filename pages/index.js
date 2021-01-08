@@ -1,19 +1,11 @@
-import { getHome, getFooter } from "../lib/api";
+import { getHome } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
-import AppFooter from "../components/AppFooter";
 import AppHead from "../components/AppHead";
 import RatioImg from "../components/RatioImg";
 import Teaser from "../components/Teaser";
 import GDPRIframe from "../components/GDPRIframe";
 
-export default function Home({
-  title,
-  teaser,
-  baseUrl,
-  cover,
-  content,
-  footer,
-}) {
+export default function Home({ title, teaser, baseUrl, cover, content }) {
   return (
     <>
       <AppHead title="Psychotherapie Dohm" />
@@ -62,25 +54,20 @@ export default function Home({
           previewSrc="/map.jpg"
         />
       </main>
-      <AppFooter {...footer} />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const [home, footer] = await Promise.all([getHome(), getFooter()]);
+  const home = await getHome();
 
   return {
     props: {
       baseUrl: process.env.STRAPI_API_URL,
       title: home.title,
       cover: home.cover,
-      teaser: await markdownToHtml(home.teaser || ""),
-      content: await markdownToHtml(home.welcome || ""),
-      footer: {
-        title: footer.title,
-        content: await markdownToHtml(footer.content || ""),
-      },
+      teaser: await markdownToHtml(home.teaser),
+      content: await markdownToHtml(home.welcome),
     },
   };
 }

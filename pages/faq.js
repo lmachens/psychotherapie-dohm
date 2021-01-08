@@ -1,12 +1,11 @@
 import React from "react";
-import AppFooter from "../components/AppFooter";
 import AppHead from "../components/AppHead";
 import RatioImg from "../components/RatioImg";
 import Teaser from "../components/Teaser";
-import { getFaq, getFooter } from "../lib/api";
+import { getFaq } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
-function Faq({ title, baseUrl, cover, content, footer, teaser }) {
+function Faq({ title, baseUrl, cover, content, teaser }) {
   return (
     <>
       <AppHead title="Psychotherapie Dohm - FAQ" />
@@ -31,7 +30,6 @@ function Faq({ title, baseUrl, cover, content, footer, teaser }) {
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </main>
-      <AppFooter {...footer} />
     </>
   );
 }
@@ -39,19 +37,15 @@ function Faq({ title, baseUrl, cover, content, footer, teaser }) {
 export default Faq;
 
 export async function getServerSideProps() {
-  const [faq, footer] = await Promise.all([getFaq(), getFooter()]);
+  const faq = await getFaq();
 
   return {
     props: {
       baseUrl: process.env.STRAPI_API_URL,
       title: faq.title,
       cover: faq.cover,
-      teaser: await markdownToHtml(faq.teaser || ""),
-      content: await markdownToHtml(faq.content || ""),
-      footer: {
-        title: footer.title,
-        content: await markdownToHtml(footer.content || ""),
-      },
+      teaser: await markdownToHtml(faq.teaser),
+      content: await markdownToHtml(faq.content),
     },
   };
 }
