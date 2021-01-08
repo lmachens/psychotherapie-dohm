@@ -2,6 +2,15 @@ import Link from "next/link";
 import { useState } from "react";
 import { optimizeImageSrc } from "../lib/image";
 
+const sizes = [
+  { minWidth: 1500, imgWidth: 1750 },
+  { minWidth: 1250, imgWidth: 1500 },
+  { minWidth: 1000, imgWidth: 1250 },
+  { minWidth: 750, imgWidth: 1000 },
+  { minWidth: 500, imgWidth: 750 },
+  { minWidth: 400, imgWidth: 500 },
+];
+
 function GDPRIframe({
   previewSrc,
   previewText,
@@ -18,28 +27,19 @@ function GDPRIframe({
       {!agreed && (
         <div className="preview">
           <picture>
-            <source
-              srcSet={optimizeImageSrc({ src: previewSrc, width: 1750 })}
-              media="(min-width: 1500px)"
-            />
-            <source
-              srcSet={optimizeImageSrc({ src: previewSrc, width: 1500 })}
-              media="(min-width: 1250px)"
-            />
-            <source
-              srcSet={optimizeImageSrc({ src: previewSrc, width: 1250 })}
-              media="(min-width: 1000px)"
-            />
-            <source
-              srcSet={optimizeImageSrc({ src: previewSrc, width: 1000 })}
-              media="(min-width: 750px)"
-            />
-            <source
-              srcSet={optimizeImageSrc({ src: previewSrc, width: 750 })}
-              media="(min-width: 500px)"
-            />
+            {sizes.map((size) => (
+              <source
+                key={size}
+                srcSet={optimizeImageSrc({
+                  src: previewSrc,
+                  width: size.imgWidth,
+                })}
+                media={`(min-width: ${size.minWidth}px)`}
+              />
+            ))}
+
             <img
-              src={optimizeImageSrc({ src: previewSrc, width: 500 })}
+              src={optimizeImageSrc({ src: previewSrc, width: 400 })}
               loading="lazy"
               width={width}
               height={height}

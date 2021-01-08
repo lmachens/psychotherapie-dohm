@@ -1,23 +1,23 @@
 import { optimizeCMSImageSrc } from "../lib/image";
 
-function RatioImg({ smallSrc, mediumSrc, largeSrc, alt }) {
+const sizes = [
+  { minWidth: 1500, imgWidth: 1000 },
+  { minWidth: 1200, imgWidth: 750 },
+  { minWidth: 400, imgWidth: 500 },
+];
+function RatioImg({ src, alt }) {
   return (
     <div className="ratio-img">
       <picture>
-        {largeSrc && (
+        {sizes.map((size) => (
           <source
-            srcSet={optimizeCMSImageSrc({ src: largeSrc, width: 1000 })}
-            media="(min-width: 992px)"
+            key={size}
+            srcSet={optimizeCMSImageSrc({ src, width: size.imgWidth })}
+            media={`(min-width: ${size.minWidth}px)`}
           />
-        )}
-        {mediumSrc && (
-          <source
-            srcSet={optimizeCMSImageSrc({ src: mediumSrc, width: 750 })}
-            media="(min-width: 768px)"
-          />
-        )}
+        ))}
         <img
-          src={optimizeCMSImageSrc({ src: smallSrc, width: 500 })}
+          src={optimizeCMSImageSrc({ src, width: 400 })}
           alt={alt}
           width="100%"
           height="100%"

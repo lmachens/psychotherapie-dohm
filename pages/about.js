@@ -18,9 +18,7 @@ function About({ title, teaser, cover, avatar, content }) {
           </div>
           <div className="col">
             <RatioImg
-              smallSrc={cover.formats.small.url}
-              mediumSrc={cover.formats.medium.url}
-              largeSrc={cover.formats.large.url}
+              src={cover.formats.large.url}
               alt={cover.alternativeText}
             />
           </div>
