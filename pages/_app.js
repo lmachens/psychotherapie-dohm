@@ -2,7 +2,7 @@ import "../styles/styles.scss";
 import App from "next/app";
 import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";
-import { getFooter } from "../lib/api";
+import { fetchAPI } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
 function MyApp({ Component, pageProps, footer }) {
@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps, footer }) {
 
 MyApp.getInitialProps = async (appContext) => {
   const [footer, appProps] = await Promise.all([
-    getFooter(),
+    fetchAPI("dohm-footer"),
     App.getInitialProps(appContext),
   ]);
 

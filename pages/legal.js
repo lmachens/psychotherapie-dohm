@@ -1,6 +1,6 @@
 import React from "react";
 import AppHead from "../components/AppHead";
-import { getLegal } from "../lib/api";
+import { fetchAPI } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
 function Legal({ title, content }) {
@@ -20,7 +20,7 @@ function Legal({ title, content }) {
 export default Legal;
 
 export async function getServerSideProps() {
-  const legal = await getLegal();
+  const legal = await fetchAPI("dohm-legal");
 
   return {
     props: {

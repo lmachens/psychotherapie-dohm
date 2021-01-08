@@ -1,4 +1,4 @@
-import { getHome } from "../lib/api";
+import { fetchAPI } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 import AppHead from "../components/AppHead";
 import RatioImg from "../components/RatioImg";
@@ -59,7 +59,7 @@ export default function Home({ title, teaser, cover, content }) {
 }
 
 export async function getServerSideProps() {
-  const home = await getHome();
+  const home = await fetchAPI("dohm-home");
 
   return {
     props: {

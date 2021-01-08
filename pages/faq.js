@@ -2,7 +2,7 @@ import React from "react";
 import AppHead from "../components/AppHead";
 import RatioImg from "../components/RatioImg";
 import Teaser from "../components/Teaser";
-import { getFaq } from "../lib/api";
+import { fetchAPI } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
 function Faq({ title, cover, content, teaser }) {
@@ -37,7 +37,7 @@ function Faq({ title, cover, content, teaser }) {
 export default Faq;
 
 export async function getServerSideProps() {
-  const faq = await getFaq();
+  const faq = await fetchAPI("dohm-faq");
 
   return {
     props: {

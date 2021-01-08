@@ -2,7 +2,7 @@ import React from "react";
 import AppHead from "../components/AppHead";
 import RatioImg from "../components/RatioImg";
 import Teaser from "../components/Teaser";
-import { getAbout } from "../lib/api";
+import { fetchAPI } from "../lib/api";
 import { optimizeCMSImageSrc } from "../lib/image";
 import markdownToHtml from "../lib/markdownToHtml";
 
@@ -45,7 +45,7 @@ function About({ title, teaser, cover, avatar, content }) {
 export default About;
 
 export async function getServerSideProps() {
-  const about = await getAbout();
+  const about = await fetchAPI("dohm-about");
 
   return {
     props: {

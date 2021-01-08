@@ -2,7 +2,7 @@ import React from "react";
 import AppHead from "../components/AppHead";
 import RatioImg from "../components/RatioImg";
 import Teaser from "../components/Teaser";
-import { getPublications } from "../lib/api";
+import { fetchAPI } from "../lib/api";
 import { optimizeCMSImageSrc } from "../lib/image";
 import markdownToHtml from "../lib/markdownToHtml";
 
@@ -51,7 +51,7 @@ function Publications({ title, partners, cover, content }) {
 export default Publications;
 
 export async function getServerSideProps() {
-  const publications = await getPublications();
+  const publications = await fetchAPI("dohm-publications");
 
   return {
     props: {

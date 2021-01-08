@@ -1,7 +1,6 @@
 import React from "react";
-import AppFooter from "../components/AppFooter";
 import AppHead from "../components/AppHead";
-import { getPrivacy } from "../lib/api";
+import { fetchAPI } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
 
 function Privacy({ title, content }) {
@@ -21,7 +20,7 @@ function Privacy({ title, content }) {
 export default Privacy;
 
 export async function getServerSideProps() {
-  const privacy = await getPrivacy();
+  const privacy = await fetchAPI("dohm-privacy");
 
   return {
     props: {
