@@ -1,5 +1,5 @@
-This is the source for a psychologist website with a Ligthouse score of 100 on desktop and a little less on mobile.  
-[Psychotherapi Dohm](http://staging.psychotherapiedohm.de/)
+This is the source for a psychologist website with a Ligthouse score of 100.  
+[Psychotherapi Dohm](http://psychotherapiedohm.de/)
 
 ## Getting Started
 
@@ -7,11 +7,7 @@ This website get's the data from a strapi CMS which is configured via environmen
 
 ### Lighthouse score
 
-**Desktop**
-![Lighthouse Desktop](.github/lighthouse_desktop.jpg)
-
-**Mobile**
-![Lighthouse Mobile](.github/lighthouse_mobile.jpg)
+![Lighthouse Desktop](.github/lighthouse.jpg)
 
 ### Technologies
 
