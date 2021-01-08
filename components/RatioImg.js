@@ -11,7 +11,7 @@ function RatioImg({ src, alt }) {
       <picture>
         {sizes.map((size) => (
           <source
-            key={size}
+            key={size.minWidth}
             srcSet={optimizeCMSImageSrc({ src, width: size.imgWidth })}
             media={`(min-width: ${size.minWidth}px)`}
           />

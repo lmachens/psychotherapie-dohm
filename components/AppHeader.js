@@ -22,16 +22,25 @@ const links = [
   },
 ];
 function AppHeader() {
-  const { asPath, prefetch } = useRouter();
-  const collapse = useRef();
+  const { asPath, prefetch, pathname } = useRouter();
+  const collapseEl = useRef();
+  const collapseInstance = useRef();
 
   useEffect(() => {
     // Bootstrap needs to be loaded dynamically to avoid SSR `document is not defined` issue
     import("bootstrap/js/dist/collapse").then(({ default: Collapse }) => {
       // https://getbootstrap.com/docs/5.0/components/collapse/#via-javascript
-      new Collapse(collapse.current, { toggle: false });
+      collapseInstance.current = new Collapse(collapseEl.current, {
+        toggle: false,
+      });
     });
   }, []);
+
+  useEffect(() => {
+    if (collapseInstance.current) {
+      collapseInstance.current.hide();
+    }
+  }, [pathname]);
 
   return (
     <header className="sticky-top">
@@ -54,7 +63,7 @@ function AppHeader() {
           <div
             className="collapse navbar-collapse"
             id="navbarLinks"
-            ref={collapse}
+            ref={collapseEl}
           >
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               {links.map((link) => (
