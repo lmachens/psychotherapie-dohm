@@ -1,9 +1,11 @@
 import "../styles/styles.scss";
 import App from "next/app";
+import dynamic from "next/dynamic";
 import AppHeader from "../components/AppHeader";
-import AppFooter from "../components/AppFooter";
 import { fetchAPI } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";
+
+const AppFooter = dynamic(() => import("../components/AppFooter"));
 
 function MyApp({ Component, pageProps, footer }) {
   return (
