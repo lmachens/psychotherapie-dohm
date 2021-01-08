@@ -1,12 +1,12 @@
 import React from "react";
-import AppFooter from "../components/AppFooter";
 import AppHead from "../components/AppHead";
 import RatioImg from "../components/RatioImg";
 import Teaser from "../components/Teaser";
 import { getPublications } from "../lib/api";
+import { optimizeCMSImageSrc } from "../lib/image";
 import markdownToHtml from "../lib/markdownToHtml";
 
-function Publications({ title, partners, baseUrl, cover, content }) {
+function Publications({ title, partners, cover, content }) {
   return (
     <>
       <AppHead title="Psychotherapie Dohm - Publikationen" />
@@ -18,9 +18,13 @@ function Publications({ title, partners, baseUrl, cover, content }) {
                 {partners.map((partner) => (
                   <img
                     key={partner.id}
-                    src={`${baseUrl}${partner.url}`}
+                    src={optimizeCMSImageSrc({ src: partner.url, width: 90 })}
+                    width="90"
+                    height="90"
                     alt={partner.alternativeText}
                     className="partner-image"
+                    loading="lazy"
+                    decoding="async"
                   />
                 ))}
               </div>
@@ -28,9 +32,9 @@ function Publications({ title, partners, baseUrl, cover, content }) {
           </div>
           <div className="col">
             <RatioImg
-              smallSrc={`${baseUrl}${cover.formats.small.url}`}
-              mediumSrc={`${baseUrl}${cover.formats.medium.url}`}
-              largeSrc={`${baseUrl}${cover.url}`}
+              smallSrc={cover.formats.small.url}
+              mediumSrc={cover.formats.medium.url}
+              largeSrc={cover.url}
               alt={cover.alternativeText}
             />
           </div>
@@ -51,7 +55,6 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      baseUrl: process.env.STRAPI_API_URL,
       title: publications.title,
       cover: publications.cover,
       partners: publications.partners,

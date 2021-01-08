@@ -5,7 +5,7 @@ import RatioImg from "../components/RatioImg";
 import Teaser from "../components/Teaser";
 import GDPRIframe from "../components/GDPRIframe";
 
-export default function Home({ title, teaser, baseUrl, cover, content }) {
+export default function Home({ title, teaser, cover, content }) {
   return (
     <>
       <AppHead title="Psychotherapie Dohm" />
@@ -18,9 +18,9 @@ export default function Home({ title, teaser, baseUrl, cover, content }) {
           </div>
           <div className="col">
             <RatioImg
-              smallSrc={`${baseUrl}${cover.formats.small.url}`}
-              mediumSrc={`${baseUrl}${cover.formats.medium.url}`}
-              largeSrc={`${baseUrl}${cover.url}`}
+              smallSrc={cover.formats.small.url}
+              mediumSrc={cover.formats.medium.url}
+              largeSrc={cover.formats.large.url}
               alt={cover.alternativeText}
             />
           </div>
@@ -63,7 +63,6 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      baseUrl: process.env.STRAPI_API_URL,
       title: home.title,
       cover: home.cover,
       teaser: await markdownToHtml(home.teaser),
