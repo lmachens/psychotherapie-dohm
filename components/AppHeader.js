@@ -29,7 +29,7 @@ function AppHeader() {
     // Bootstrap needs to be loaded dynamically to avoid SSR `document is not defined` issue
     import("bootstrap/js/dist/collapse").then(({ default: Collapse }) => {
       // https://getbootstrap.com/docs/5.0/components/collapse/#via-javascript
-      new Collapse(collapse.current);
+      new Collapse(collapse.current, { toggle: false });
     });
   }, []);
 
