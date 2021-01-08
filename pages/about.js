@@ -10,7 +10,7 @@ function About({ title, teaser, baseUrl, cover, avatar, content }) {
     <>
       <AppHead title="Psychotherapie Dohm - Zur Person" />
       <main>
-        <section className="row g-0 align-items-center bg-dark text-light">
+        <section className="row g-0 align-items-stretch bg-dark text-light">
           <div className="col">
             <Teaser title={title}>
               <div dangerouslySetInnerHTML={{ __html: teaser }} />

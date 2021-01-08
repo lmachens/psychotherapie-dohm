@@ -11,7 +11,7 @@ function Publications({ title, partners, baseUrl, cover, content }) {
     <>
       <AppHead title="Psychotherapie Dohm - Publikationen" />
       <main>
-        <section className="row g-0 align-items-center bg-dark text-light">
+        <section className="row g-0 align-items-stretch bg-dark text-light">
           <div className="col">
             <Teaser title={title}>
               <div>
