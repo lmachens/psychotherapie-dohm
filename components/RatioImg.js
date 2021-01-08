@@ -1,9 +1,9 @@
 import { optimizeCMSImageSrc } from "../lib/image";
 
 const sizes = [
-  { minWidth: 1500, imgWidth: 1000 },
-  { minWidth: 1200, imgWidth: 750 },
-  { minWidth: 400, imgWidth: 500 },
+  { minWidth: 1501, imgWidth: 1000 },
+  { minWidth: 1201, imgWidth: 750 },
+  { minWidth: 361, imgWidth: 500 },
 ];
 function RatioImg({ src, alt }) {
   return (
@@ -17,7 +17,7 @@ function RatioImg({ src, alt }) {
           />
         ))}
         <img
-          src={optimizeCMSImageSrc({ src, width: 400 })}
+          src={optimizeCMSImageSrc({ src, width: 360 })}
           alt={alt}
           width="100%"
           height="100%"
