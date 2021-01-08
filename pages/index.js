@@ -37,7 +37,7 @@ export default function Home({
           className="p-5 bg-dark text-light"
           dangerouslySetInnerHTML={{ __html: content }}
         />
-        <section className="p-5 row g-0 align-items-center">
+        <section className="py-5">
           <GDPRIframe
             width="500"
             height="350"
