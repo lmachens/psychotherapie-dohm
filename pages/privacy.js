@@ -1,4 +1,3 @@
-import React from "react";
 import AppHead from "../components/AppHead";
 import { fetchAPI } from "../lib/api";
 import markdownToHtml from "../lib/markdownToHtml";

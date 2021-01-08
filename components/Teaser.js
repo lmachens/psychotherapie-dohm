@@ -1,5 +1,3 @@
-import React from "react";
-
 function Teaser({ title, children }) {
   return (
     <div className="d-flex flex-column justify-content-center h-100 text-center p-5">

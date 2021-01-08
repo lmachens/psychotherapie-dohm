@@ -1,4 +1,3 @@
-import React from "react";
 import { optimizeCMSImageSrc } from "../lib/image";
 
 function RatioImg({ smallSrc, mediumSrc, largeSrc, alt }) {

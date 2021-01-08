@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import Link from "next/link";
-import React, { Children } from "react";
+import { cloneElement, Children } from "react";
 
 const NavLink = ({ children, activeClassName, ...props }) => {
   const { asPath, prefetch } = useRouter();
@@ -16,7 +16,7 @@ const NavLink = ({ children, activeClassName, ...props }) => {
 
   return (
     <Link {...props}>
-      {React.cloneElement(child, {
+      {cloneElement(child, {
         className: className || null,
         onMouseEnter: () => {
           prefetch(props.href);
