@@ -1,5 +1,5 @@
 This is the source for a psychologist website with a Ligthouse score of 100.  
-[Psychotherapi Dohm](http://psychotherapiedohm.de/)
+[Psychotherapie Dohm](https://psychotherapiedohm.de/)
 
 ## Getting Started
 
