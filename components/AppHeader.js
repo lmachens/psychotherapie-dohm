@@ -13,10 +13,6 @@ const links = [
     label: "Zur Person",
   },
   {
-    href: "/faq",
-    label: "FAQ",
-  },
-  {
     href: "/publications",
     label: "Texte",
   },
