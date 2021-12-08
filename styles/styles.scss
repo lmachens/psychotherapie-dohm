@@ -40,6 +40,10 @@
   object-fit: cover;
 }
 
+.contain img {
+  object-fit: contain;
+}
+
 iframe {
   display: block;
   margin: 0 auto;

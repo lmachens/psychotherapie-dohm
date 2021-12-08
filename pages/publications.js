@@ -30,7 +30,11 @@ function Publications({ title, partners, cover, content }) {
             </Teaser>
           </div>
           <div className="col">
-            <RatioImg src={cover.url} alt={cover.alternativeText} />
+            <RatioImg
+              src={cover.url}
+              alt={cover.alternativeText}
+              className="contain"
+            />
           </div>
         </section>
         <section

@@ -5,9 +5,9 @@ const sizes = [
   { minWidth: 1201, imgWidth: 750 },
   { minWidth: 361, imgWidth: 500 },
 ];
-function RatioImg({ src, alt }) {
+function RatioImg({ src, alt, className }) {
   return (
-    <div className="ratio-img">
+    <div className={`ratio-img ${className || ""}`}>
       <picture>
         {sizes.map((size) => (
           <source
